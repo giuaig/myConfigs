@@ -106,18 +106,18 @@ alias erase='shred -n 35 -z -u'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias grep='grep --color'
 alias hex2dec='printf "%d\n" 0x$1'
-alias ifme='curl ifconfig.me/all'
-alias myip='curl ifconfig.me/ip'
+alias ifme='curl ifconfig.co/json'
+alias myip='curl ifconfig.co'
 #alias myip='curl myip.it | grep -i "Your IP address"'
 alias install='apt-get install'
 alias net_lis='netstat -plev'
 alias net_stat='netstat -s'
 alias netlisteners='lsof -i -P | grep LISTEN | ccze -A'
 alias ping='ping -c 3'
-alias poogle='ping -c 5 www.google.it'
+alias poogle='ping -c 5 www.google.com'
 alias putan='netstat -putan'
 alias x='startx'
-alias tcxcopy='find /home/halo/tcx/ -type f -mtime 0 -exec cp {} /media/slowplace/Owncloud/running/gps/ \;'
+alias tcxcopy='find /home/halo/tcx/ -type f -mtime 0 -exec cp {} /media/slowplace/Nextcloud/running/gps/ \;'
 
 man() {
 	env \
@@ -150,3 +150,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+

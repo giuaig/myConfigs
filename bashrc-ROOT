@@ -37,11 +37,11 @@ alias ds='du -khs * | sort -h'   #find the biggest in a folder
 alias active='grep -v -e "^$" -e"^ *#"'   #show lines not blank or commented out
 alias netlisteners='lsof -i -P | grep LISTEN | ccze -A'   #show active network listeners
 alias erase='shred -n 35 -z -u'   #overwrite files 35 times, then 0, then split it and erase
-alias ifme='curl ifconfig.me/all'   #Web ip infos
-alias myip='curl ifconfig.me/ip'   #Web ip address
-#alias myip='curl myip.it | grep -i "Your IP address"'
+alias ifme='curl ifconfig.co/json'   #Web ip infos
+alias myip='curl ifconfig.co'   #Web ip address
+#alias myip='curl myip.com | grep -i "Your IP address"'
 alias ping='ping -c 3'   #
-alias poogle='ping -c 5 www.google.it'   #ping
+alias poogle='ping -c 5 www.google.com'   #ping
 alias 8888='ping -c 5 8.8.8.8'   #ping
 alias dec2hex='printf "%x\n" $1'   #decimal to hex
 alias hex2dec='printf "%d\n" 0x$1'   #hex to decimal
@@ -49,6 +49,7 @@ alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 
 alias x='startx'
 alias alias_show='grep -n "^[\t ]*alias " ~/.bashrc'   #show active alias
 alias alias_show_ALL='alias -p'   #show all alias, includiing system alias
+alias errors="journalctl -b -p err|less"
 
 alias net_lis="netstat -plev"
 alias net_stat="netstat -s"
@@ -93,5 +94,8 @@ fi
 #History size
 export HISTSIZE=15000
 #export HISTFILESIZE=2000000
+
+#Timeout for root sessions
+TMOUT=600
 
 ##EOF

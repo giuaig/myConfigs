@@ -1,4 +1,4 @@
 # Config Files
-* vim
-* screen
 * bash
+* screen
+* vim
