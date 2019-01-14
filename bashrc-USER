@@ -118,6 +118,7 @@ alias poogle='ping -c 5 www.google.com'
 alias putan='netstat -putan'
 alias x='startx'
 alias tcxcopy='find /home/halo/tcx/ -type f -mtime 0 -exec cp {} /media/slowplace/Nextcloud/running/gps/ \;'
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep --color=never -E "state|to\ full|to\ empty|percentage"'
 
 man() {
 	env \
@@ -151,3 +152,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#https://gist.github.com/ipedrazas/2c93f6e74737d1f8a791
+function dip() {
+        if [ -z $1 ]; then
+                docker ps -a --format "{{.ID}}" | while read -r line ; do
+                        echo $line $(docker inspect --format "{{ .Name }} {{ .NetworkSettings.Networks.bridge.IPAddress }}" $line | sed 's/\///'):$(docker port "$line" | grep -o "0.0.0.0:.*" | cut -f2 -d:)
+                done
+        else
+                echo $(docker inspect --format "{{.ID }} {{ .Name }} {{ .NetworkSettings.Networks.bridge.IPAddress }}" $1 | sed 's/\///'):$(docker port "$1" | grep -o "0.0.0.0:.*" | cut -f2 -d:)
+        fi
+}
+
+export PATH="/home/halo/.platformio/penv/bin/:${PATH}"
