@@ -60,7 +60,7 @@ if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}[\A]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS2='--> '
 else
-    PS1='${debian_chroot:+($debian_chroot)}[\A]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}[\A]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1 " (%s)")\[\033[00m\]\$ '
     PS2='--> '
 fi
 unset color_prompt force_color_prompt
@@ -162,5 +162,10 @@ function dip() {
                 echo $(docker inspect --format "{{.ID }} {{ .Name }} {{ .NetworkSettings.Networks.bridge.IPAddress }}" $1 | sed 's/\///'):$(docker port "$1" | grep -o "0.0.0.0:.*" | cut -f2 -d:)
         fi
 }
+
+#https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+if [ -f ~/.git-prompt ]; then
+    source ~/.git-prompt.sh
+fi
 
 export PATH="/home/halo/.platformio/penv/bin/:${PATH}"
