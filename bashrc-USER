@@ -171,4 +171,20 @@ if [ -f ~/.bashgit ]; then
     . ~/.bashgit
 fi
 
+
 export PATH="/home/halo/.platformio/penv/bin/:${PATH}"
+
+
+##WORK!
+function stu3-shell {
+   rancher exec -it stu3-$1-php-1 bash
+}
+function stu3-uli {
+   rancher exec -it stu3-$1-php-1 drush -r /var/www/html/web uli $2;
+}
+function stu3-php {
+   rancher exec -it stu3-$1-php-1 drush -r /var/www/html/web php;
+}
+function stu3-login {
+   rancher exec -it stu3-$1-php-1 drush --uri="https://nginx.stu3-$1.prod.globogis.srl" uli $2 | tail -n 1 | xargs google-chrome
+}
