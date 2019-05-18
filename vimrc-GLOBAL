@@ -112,7 +112,7 @@ set statusline+=%w	"preview window flag
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%y      "filetype 
-set statusline+=[b:%n]	"buffer number
+set statusline+=[buf:%n]	"buffer number
 set statusline+=%=      "left/right separator
 set statusline+=[l:\ %l/%L]   "cursor line/total lines
 set statusline+=[c:\ %c]     "cursor column

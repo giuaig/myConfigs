@@ -1,4 +1,6 @@
 "https://www.digitalocean.com/community/tutorials/how-to-use-vundle-to-manage-vim-plugins-on-a-linux-vps
+"INSTALL-VUNDLE: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -9,18 +11,20 @@ call vundle#rc()
 " 'user/repository' format
 Plugin 'gmarik/vundle'
 
-" We could also add repositories with a ".git" extension
+"NerdTree
 Plugin 'scrooloose/nerdtree.git'
+"Block Commenter
+Plugin 'scrooloose/nerdcommenter'
 
-" NerdTree GIT flags
-" git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"NerdTree GIT flags
+Plugin 'xuyuanp/nerdtree-git-plugin'
 
 " To get plugins from Vim Scripts, you can reference the plugin
 " by name as it appears on the site
 Plugin 'Buffergator'
 
-Plugin 'ctrlp.vim'
+"Full path fuzzy file finder
+Plugin 'ctrlpvim/ctrlp.vim'
 
 "Git wrapper
 Plugin 'tpope/vim-fugitive'
@@ -28,8 +32,27 @@ Plugin 'tpope/vim-fugitive'
 "Git diff
 Plugin 'airblade/vim-gitgutter'
 
+"
 Plugin 'pearofducks/ansible-vim'
 
+"Show HTML color -NON FUNZIONA-
+"Plugin 'lilydjwg/colorizer'
+"Plugin 'chrisbra/colorizer'
+
+"Highlights the word under the cursor
+Plugin 'RRethy/vim-illuminate'
+
+"Pulse everytime you scroll the search results
+Plugin 'inside/vim-search-pulse'
+
+"
+Plugin 'ekalinin/Dockerfile.vim'
+
+"Show indent lines
+Plugin 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_guide_size = 1
+
+"
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -65,3 +88,27 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+""""""""""""""""""""""""""""
+" => Statusline
+"""""""""""""""""""""""""""" 
+"set statusline=\ %F%m%r%h%w%y[%p%%][%l,%L/%v] 
+
+" Always hide the statusline
+set laststatus=2
+
+"set statusline=%t      "tail of the filename
+set statusline=%F       "file path 
+set statusline+=%m      "modified flag
+set statusline+=%h      "help file flag
+set statusline+=%r      "read only flag 
+set statusline+=%w      "preview window flag 
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype 
+set statusline+=[buf:%n]        "buffer number
+set statusline+=%{FugitiveStatusline()}	"add GIT branch
+set statusline+=%=      "left/right separator
+set statusline+=[l:\ %l/%L]   "cursor line/total lines
+set statusline+=[c:\ %c]     "cursor column
+set statusline+=\ %p%%   "percent through file
